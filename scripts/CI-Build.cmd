@@ -1,0 +1,1 @@
+call "%~dp0..\Build.cmd" -rebuild -c "Release" -officialSourceBranchName "dev/ManuelTest" -officialBuildId "ManualTest" 

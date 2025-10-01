@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+ 	<PropertyGroup>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
+	</PropertyGroup>
+
+	<Import Project="eng\targets\Settings.props"/>
+
+ <PropertyGroup>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <LangVersion>Latest</LangVersion>
+    <TargetFrameworkForNETSDK>net7.0</TargetFrameworkForNETSDK>
+
+    <!--
+      Tools and packages produced by this repository support infrastructure and are not shipping on NuGet or via any other official channel.
+    -->
+    <IsShipping>false</IsShipping>
+  </PropertyGroup>
+</Project>

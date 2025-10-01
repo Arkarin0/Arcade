@@ -1,0 +1,31 @@
+{
+  "feeds": {
+    "public": "https://localhost/",
+    "nightly": "https://localhost/"
+  },
+  "packages": {
+    "default": {
+      "PackageName": "nightly",
+      "MinimalRepo": "arcade"
+    },
+    "nuget": {
+      "PackageName": "public"
+    }
+  },
+  "branches": {
+    "main": {
+      "nugetKind": ["PerBuildPreRelease"],
+      "packageFeeds": "default"
+    },
+    "releases/V1.0.X": {
+      "nugetKind": ["Release"]
+    }        
+  },
+  "releases": {
+    "V1.0.X": {
+      "nugetKind": "Release",
+      "version": "1.0.*",
+      "packageFeeds": "nuget"
+    }
+  }
+}

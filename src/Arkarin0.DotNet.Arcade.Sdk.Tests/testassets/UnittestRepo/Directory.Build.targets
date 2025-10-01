@@ -1,0 +1,40 @@
+<Project>
+  <Import Project="Sdk.targets" Sdk="Arkarin0.DotNet.Arcade.Sdk" />
+
+  <Target Name="WriteTestInfoTask" AfterTargets="Build">
+    <PropertyGroup>
+      <InfoFileContent>
+        <![CDATA[
+IsTestProject: $(IsTestProject)
+IsPerformanceTestProject: $(IsPerformanceTestProject)
+IsIntegrationTestProject: $(IsIntegrationTestProject)
+IsUnitTestProject: $(IsUnitTestProject)
+
+TestRunnerName: $(TestRunnerName)
+]]>
+      </InfoFileContent>
+    </PropertyGroup>
+    <WriteLinesToFile Lines="$(InfoFileContent)" File="$(TargetDir)TestInfo.txt" Overwrite="true" />
+  </Target>
+
+  <!--
+	Hanlde Sample Test for test runners
+	-->
+  <PropertyGroup>
+    <_TestrunnerExampleTestsDir>$(MSBuildThisFileDirectory)src\shared\$(TestRunnerName)\</_TestrunnerExampleTestsDir>
+    <_TestrunnerExampleUnitTestsDir>$([MSBuild]::NormalizeDirectory('$(_TestrunnerExampleTestsDir)', 'UnitTests'))</_TestrunnerExampleUnitTestsDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsUnitTestProject)' == 'true'">
+    <VSTestLogger>trx</VSTestLogger>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsUnitTestProject)' == 'true'">
+    <Compile Include="$(_TestrunnerExampleUnitTestsDir)**\*" />
+  </ItemGroup>
+
+  <Target Name="ValidateTestRunnerExampleTestExist" BeforeTargets="BeforeBuild" Condition="'$(IsTestProject)' == 'true'">
+    <Error Text="There are no test cases for the test runner '$(TestRunnerName)'." Condition="!Exists('$(_TestrunnerExampleTestsDir)')"/>
+    <Error Text="There are no 'UnitTests' for the test runner '$(TestRunnerName)'." Condition="!Exists('$(_TestrunnerExampleUnitTestsDir)') and '$(IsUnitTestProject)' == 'true'"/>
+  </Target>
+</Project>

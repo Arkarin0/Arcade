@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created/modified by Arkarin0 under one ore more license(s). -->
+<Project>
+
+  <!--<Import Project="BuildTasks.props" />-->
+  <Import Project="ProjectLayout.props" />
+  <Import Project="DefaultVersions.props"/>
+  <!--<Import Project="ProjectDefaults.props"/>-->
+  <Import Project="Tests.props" Condition="'$(DisableArcadeTestFramework)' != 'true'" />
+  <!--<Import Project="Workarounds.props"/>-->
+  <!--<Import Project="TargetFrameworkDefaults.props"/>-->
+</Project>

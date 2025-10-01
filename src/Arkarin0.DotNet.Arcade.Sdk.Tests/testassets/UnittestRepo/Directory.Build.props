@@ -1,0 +1,8 @@
+<Project>
+  <Import Project="Sdk.props" Sdk="Arkarin0.DotNet.Arcade.Sdk" />
+
+  <PropertyGroup>
+    <PackageProjectUrl>https://localhost/</PackageProjectUrl>
+    <TargetFrameWorkVersion>net4.6.2</TargetFrameWorkVersion>
+  </PropertyGroup>
+</Project>

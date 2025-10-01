@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created/modified by Arkarin0 under one ore more license(s). -->
+<Project>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TestPlatform" Version="$(MicrosoftTestPlatformVersion)" IsImplicitlyDefined="true" PrivateAssets="all" Publish="true"/>
+    <PackageReference Include="NUnit" Version="$(NUnitVersion)" IsImplicitlyDefined="true" PrivateAssets="all" Publish="true"/>
+    <PackageReference Include="NUnit3TestAdapter" Version="$(NUnit3TestAdapterVersion)" IsImplicitlyDefined="true" PrivateAssets="all" Publish="true"/>
+  </ItemGroup>
+
+  <Import Project="..\VSTest.targets"/>
+</Project>

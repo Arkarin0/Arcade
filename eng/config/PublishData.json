@@ -1,0 +1,37 @@
+{
+  "feeds": {
+      "public": "addnuget Feed here"
+  },
+  "packages": {
+    "default": {
+      "PackageName": "Arcade",
+      "Arkarin0.Arcade.Common": "nightly",
+      "Arkarin0.DotNet.Arcade.Sdk": "nightly",
+      "Arkarin0.DotNet.Arcade.Logging": "nightly",
+      "Arkarin0.DotNet.Internal.DependencyInjection.Testing": "public"
+    },
+    "NuGet": {
+      "PackageName": "Arcade",
+      "Arkarin0.Arcade.Common": "public",
+      "Arkarin0.DotNet.Arcade.Sdk": "public",
+      "Arkarin0.DotNet.Arcade.Logging": "public",
+      "Arkarin0.DotNet.Internal.DependencyInjection.Testing": "public"
+    }
+  },
+  "branches": {
+    "main": {
+      "nugetKind": ["PerBuildPreRelease"],
+      "packageFeeds": "default"
+    },
+    "releases/V1.0.X": {
+      "nugetKind": ["Release"]
+    }        
+  },
+  "releases": {
+    "V1.0.X": {
+      "nugetKind": "Release",
+      "version": "1.0.*",
+      "packageFeeds": "NuGet"
+    }
+  }
+}

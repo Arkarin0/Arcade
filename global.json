@@ -1,0 +1,10 @@
+{
+  "tools": {
+    "dotnet": "7.0.103",
+    "vs": {
+      "version": "17.3"
+    }
+  },
+  "msbuild-sdks": {
+  }
+}

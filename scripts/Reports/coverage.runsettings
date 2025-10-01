@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+<DataCollectionRunSettings>
+    <DataCollectors>
+        <DataCollector friendlyName="Xplat code coverage">
+            <Configuration>
+                <Format>cobertura</Format>
+            </Configuration>
+        </DataCollector>
+    </DataCollectors>
+</DataCollectionRunSettings>
+<InProcDataCollectionRunSettings>
+    <InProcDataCollectors>
+        <InProcDataCollector assemblyQualifiedName="Coverlet.Collector.DataCollection.CoverletInProcDataCollector, coverlet.collector, Version=3.1.0.0, Culture=neutral, PublicToken=null"
+                             friendlyName="Xplat Code Coverage"
+                             enabled="True"
+                             codebase="coverlet.collector.dll"
+                            />
+    </InProcDataCollectors>
+</InProcDataCollectionRunSettings>
+</RunSettings>

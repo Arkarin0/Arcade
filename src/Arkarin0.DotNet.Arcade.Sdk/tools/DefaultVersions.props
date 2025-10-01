@@ -1,0 +1,77 @@
+<!-- Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license. -->
+<Project>
+
+  <!--
+    Sets versions of packages used by the toolset unless they were already specified by the repo.
+    Version.props shall be imported prior this file.
+  -->
+
+  <PropertyGroup>
+    <OfficialBuild>false</OfficialBuild>
+    <OfficialBuild Condition="'$(OfficialBuildId)' != ''">true</OfficialBuild>
+  </PropertyGroup>
+
+  <Import Project="DefaultVersions.Generated.props"/>
+  <Import Project="$(VersionsPropsPath)" Condition="Exists('$(VersionsPropsPath)')"/>
+
+  <!--
+    Prevent NuGet from using cached packages
+    Workaround for https://github.com/NuGet/Home/issues/3116
+  -->
+  <PropertyGroup>
+    <RestoreNoCache Condition="'$(ContinuousIntegrationBuild)' == 'true'">true</RestoreNoCache>
+  </PropertyGroup>
+
+  <!--
+    Arcade SDK features.
+  -->
+  <PropertyGroup>
+    <!-- Opt-in features -->
+
+    <!-- Opt-out features -->
+
+
+    <!-- Deprecated features -->
+
+
+  </PropertyGroup>
+
+  <!--
+    Disable features when building from source.
+  -->
+  <PropertyGroup Condition="'$(ArcadeBuildFromSource)' == 'true'">
+
+  </PropertyGroup>
+
+  <!--
+    Default versions
+  -->
+  <PropertyGroup>
+    <!-- Testframeworks -->
+    <MicrosoftNETTestSdkVersion Condition="'$(MicrosoftNETTestSdkVersion)' == ''">17.8.0</MicrosoftNETTestSdkVersion>
+    <!-- MSTests -->
+    <MicrosoftTestPlatformVersion Condition="'$(MicrosoftTestPlatformVersion)' == ''">17.8.0</MicrosoftTestPlatformVersion>
+    <MSTestVersion Condition="'$(MSTestVersion)' == ''">3.1.1</MSTestVersion>
+    <MSTestTestAdapterVersion Condition="'$(MSTestTestAdapterVersion)' == ''">$(MSTestVersion)</MSTestTestAdapterVersion>
+    <MSTestTestFrameworkVersion Condition="'$(MSTestTestFrameworkVersion)' == ''">$(MSTestVersion)</MSTestTestFrameworkVersion>
+    <!-- Nunit -->
+    <NUnitVersion Condition="'$(NUnitVersion)' == ''">4.0.1</NUnitVersion>
+    <NUnit3TestAdapterVersion Condition="'$(NUnit3TestAdapterVersion)' == ''">4.5.0</NUnit3TestAdapterVersion>
+    <!-- XUnit -->
+    <CoverletCollectorVersion Condition="'$(CoverletCollectorVersion)' == ''">6.0.0</CoverletCollectorVersion>
+    <XUnitVersion Condition="'$(XUnitVersion)' == ''">2.6.2</XUnitVersion>
+    <XUnitAnalyzersVersion Condition="'$(XUnitAnalyzersVersion)' == ''">1.6.0</XUnitAnalyzersVersion>
+    <XUnitRunnerConsoleVersion Condition="'$(XUnitRunnerConsoleVersion)' == ''">$(XUnitVersion)</XUnitRunnerConsoleVersion>
+    <!--<XUnitRunnerVisualStudioVersion Condition="'$(XUnitRunnerVisualStudioVersion)' == ''">$(XUnitVersion)</XUnitRunnerVisualStudioVersion>-->
+    <XUnitRunnerVisualStudioVersion Condition="'$(XUnitRunnerVisualStudioVersion)' == ''">2.5.4</XUnitRunnerVisualStudioVersion>
+  </PropertyGroup>
+
+  <!-- RestoreSources overrides - defines DotNetRestoreSources variable if available -->
+  <Import Project="$(DotNetPackageVersionPropsPath)" Condition="'$(DotNetPackageVersionPropsPath)' != ''"/>
+  <!--
+    Defaults for properties that need to be available to all CI build steps and are dependent on settings specified in eng/Versions.props.
+  -->
+  <PropertyGroup>
+    
+  </PropertyGroup>
+</Project>

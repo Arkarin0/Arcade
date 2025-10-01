@@ -1,0 +1,31 @@
+<Project>        
+  <PropertyGroup Condition="'$(IsUnitTestProject)' == ''">
+    <IsUnitTestProject>false</IsUnitTestProject>
+    <IsUnitTestProject Condition="$(MSBuildProjectName.EndsWith('.UnitTests')) or $(MSBuildProjectName.EndsWith('.Tests'))">true</IsUnitTestProject>
+
+    <IsTestProject Condition="'$(IsTestProject)' != 'true'">false</IsTestProject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IsUnittest)' == ''">
+		  <IsUnittest>false</IsUnittest>
+      <IsUnittest Condition="$(IsUnitTestProject) or $(IsTestProject)">true</IsUnittest>
+    </PropertyGroup>
+
+	<PropertyGroup Condition="'$(IsUnittest)' == 'true'">
+		<NoWarn>$(NoWarn);CA1707</NoWarn>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(IsUnittest)' == 'true'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="xunit" />
+		<PackageReference Include="xunit.runner.visualstudio">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="coverlet.collector">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+</Project>
