@@ -9,11 +9,13 @@
     <IsPackable>true</IsPackable>
     <!-- Generate package during Build, rather than Pack, so that it can be used during Test. -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <Description>Common toolset for repositories</Description>
     <PackageTags>Arcade Build Repository Toolset MSBuild SDK</PackageTags>
     <DevelopmentDependency>true</DevelopmentDependency>
     <PackageType>MSBuildSdk</PackageType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
     <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
     <EnableGeneratedPackageContent>false</EnableGeneratedPackageContent>
@@ -46,6 +48,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="sdk/Sdk.props;sdk/Sdk.targets" Pack="true">
       <PackagePath>sdk/%(Filename)%(Extension)</PackagePath>
     </None>
@@ -66,7 +72,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Arkarin0.Arcade.Common\Arkarin0.Arcade.Common.csproj" />
-    <ProjectReference Include="..\Arkarin0.DotNet.Arcade.Logging\Arkarin0.DotNet.Arcade.Logging.csproj" />
+    <ProjectReference Include="..\Arkarin0.DotNet.Arcade.Logging\Arkarin0.DotNet.Arcade.Logging.csproj" PrivateAssets="All"/>
   </ItemGroup>
   
   <Target Name="_GenerateSdkVersionFile" Inputs="$(MSBuildAllProjects)" Outputs="$(_GeneratedVersionFilePath)" BeforeTargets="GenerateNuSpec">
